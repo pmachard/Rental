@@ -4,18 +4,15 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configuration du DbContext avec Npgsql et la bonne chaîne
+// DbContext configuration with Npgsql
 builder.Services.AddDbContext<CarDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-var connection = builder.Configuration.GetConnectionString("DefaultConnection");
-Console.WriteLine("Chaîne de connexion : " + connection);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Injection des dépendances
+// CarService injection
 builder.Services.AddScoped<CarServices>();
 
 var app = builder.Build();
