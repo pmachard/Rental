@@ -1,0 +1,12 @@
+title Réservation d'une voiture
+
+
+
+Client -> Reservation : Demande de réservation.
+Reservation -> Catalogue : Vérification de la disponibilité de la voiture.
+Catalogue -> Reservation : Retour de la disponibilité de la voiture.
+Reservation -> Payment : Demande de paiement.
+Payment -> Reservation : Retour du statut du paiement (succès/échec).
+Reservation -> Notification : Envoi d’une notification de réservation réussie.
+Reservation -> Contracts : Création d'un contrat de location.
+Contracts -> Reservation : Retour de la confirmation du contrat.
