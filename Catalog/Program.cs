@@ -14,6 +14,7 @@ builder.Services.AddSwaggerGen();
 
 // CarService injection
 builder.Services.AddScoped<CarServices>();
+builder.Services.AddScoped<RequestServices>();
 
 var app = builder.Build();
 

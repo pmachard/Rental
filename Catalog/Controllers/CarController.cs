@@ -27,7 +27,7 @@ namespace ProductService.Controllers
             var car = await _service.GetByIdAsync(id);
             return car == null ? NotFound() : Ok(car);
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> Create(Car car)
         {
@@ -38,21 +38,21 @@ namespace ProductService.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, Car car)
         {
-               if (id != car.Id)
-                    return BadRequest();
+            if (id != car.Id)
+                return BadRequest();
 
-                var updated = await _service.UpdateAsync(car);
-                if (!updated)
-                    return NotFound();
+            var updated = await _service.UpdateAsync(car);
+            if (!updated)
+                return NotFound();
 
-                return NoContent();
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             await _service.DeleteByIdAsync(id);
-            
+
             return NoContent();
         }
     }

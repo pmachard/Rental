@@ -4,6 +4,11 @@ using ContractService.Services;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(5000); // <- doit correspondre au port interne
+});
+
 var builder = WebApplication.CreateBuilder(args);
 
 // DbContext configuration with Npgsql
@@ -14,7 +19,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// CarService injection
+// ContractService injection
 builder.Services.AddScoped<ContractServices>();
 
 var app = builder.Build();

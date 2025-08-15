@@ -18,6 +18,12 @@ namespace ProductService.Services
             return await _context.Cars.ToListAsync();
         }
 
+        public async Task<Car?> GetFreeByCategoryAsync(string category)
+        {
+            var car = await _context.Cars.FirstOrDefaultAsync(c => (c.Status == "FREE" && c.Category == category));
+            return car;
+        }
+
         public async Task<Car?> GetByIdAsync(int id)
         {
             return await _context.Cars.FindAsync(id);

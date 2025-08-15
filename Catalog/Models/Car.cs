@@ -12,5 +12,7 @@ namespace ProductService.Models
         public string Brand { get; set; } = "";
         public string Model { get; set; } = "";
         public decimal PricePerDay { get; set; }
+        public string Category { get; set; } = "";
+        public string Status { get; set; } = "Free";
     }
 }

@@ -1,0 +1,14 @@
+services:
+  microservicecatalogue:
+    build: ./Catalog
+    ports:
+      - "5001:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+
+  microservicecontract:
+    build: ./Contracts
+    ports:
+      - "5003:8080"  # Le port interne reste 5000, externe 5001
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
