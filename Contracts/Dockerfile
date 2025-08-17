@@ -7,8 +7,11 @@ COPY *.csproj .
 RUN dotnet restore
 
 # Copier le reste des fichiers et publier
-COPY . .
-RUN dotnet publish -c Release -o out
+COPY Contracts.csproj ./
+RUN dotnet restore ./Contracts.csproj
+
+COPY . ./
+RUN dotnet publish ./Contracts.csproj -c Release -o /app/out
 
 # Étape 2 : créer l'image finale
 FROM mcr.microsoft.com/dotnet/aspnet:9.0-preview
@@ -16,7 +19,7 @@ WORKDIR /app
 COPY --from=build /app/out .
 
 # Exposer le port de l'API
-EXPOSE 5000
+EXPOSE 8080
 
 # Lancer l'application
-ENTRYPOINT ["dotnet", "/app/Contracts.dll"]
+ENTRYPOINT ["dotnet", "Contracts.dll"]
